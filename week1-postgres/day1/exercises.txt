@@ -77,6 +77,6 @@ CREATE INDEX events_title
 CREATE INDEX events_starts
   ON events USING btree (starts);
 
--- book (in response to Do Question 3)
+-- me (in response to Do Question 3)
 ALTER TABLE venues ADD COLUMN active boolean DEFAULT TRUE;
 
