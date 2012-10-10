@@ -1,9 +1,29 @@
 # Find
 
-1. 
+1.
   Online FAQ: http://wiki.postgresql.org/wiki/FAQ
   Documents: http://www.postgresql.org/docs/
 
 2. Done
 
-3. 
+3. MATCH FULL means that a compound foreign key must either have all
+   its columns set, or all of them NULL. This is in contrast to MATCH
+   SIMPLE, which allows some columns to be NULL while others aren't.
+
+# Do
+
+1. SELECT * FROM pg_class WHERE relname in ('countries', 'cities', 'events', 'venues');
+
+Question: Is this what we were meant to do? Or is there some
+          property which identifies that they're tables we
+          created?
+
+2. SELECT e.title, c.country_name
+   FROM events e JOIN venues
+   ON e.venue_id = venues.venue_id JOIN cities
+   ON venues.postal_code = cities.postal_code AND venues.country_code = cities.country_code JOIN countries c
+   ON cities.country_code = c.country_code
+   WHERE e.title LIKE 'LARP Club';
+
+3. ALTER TABLE venues ADD COLUMN active boolean DEFAULT TRUE;
+
