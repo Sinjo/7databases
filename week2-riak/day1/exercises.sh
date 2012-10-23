@@ -41,3 +41,20 @@ curl -X PUT http://localhost:8091/riak/photos/polly.jpg \
 -H "Link: </riak/animals/polly>; riaktag=\"photo\"" \
 --data-binary @polly_image.jpg
 
+# Homework Q1
+curl -X PUT http://localhost:8091/riak/animals/polly?returnbody=true \
+-H "Content-Type: application/json" \
+-H "Link:</riak/photos/polly.jpg>; riaktag=\"photo\"" \
+-d '{"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}'
+
+# Homework Q2
+curl -i -X POST http://localhost:8091/riak/pdfs/ \
+-H "Content-Type: application/pdf" \
+--data-binary @noidea.pdf
+
+# Homework Q3
+curl -X PUT http://localhost:8091/riak/medicines/antibiotics/ \
+-H "Content-type: image/jpeg" \
+-H "Link: </riak/animals/ace>;riaktag=\"sick\"" \
+--data-binary @pill.jpg
+

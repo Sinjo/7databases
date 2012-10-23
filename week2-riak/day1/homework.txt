@@ -1,0 +1,37 @@
+# Find
+
+1.
+  Project documentation: http://docs.basho.com/riak/latest/
+  REST API documentation: http://docs.basho.com/riak/latest/references/apis/http/
+
+2.
+  MIME types registry: http://www.iana.org/assignments/media-types/index.html
+
+3.
+  Done. Just different ports for each of the dev servers.
+
+# Do
+
+1.
+  Update animals/polly to have a Link pointing to photos/polly.jpg
+  
+  curl -X PUT http://localhost:8091/riak/animals/polly?returnbody=true \
+    -H "Content-Type: application/json" \
+    -H "Link:</riak/photos/polly.jpg>; riaktag=\"photo\"" \
+    -d '{"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}'
+
+2.
+  POST something with a new MIME type (application/pdf).
+
+  curl -i -X POST http://localhost:8091/riak/pdfs/ \
+    -H "Content-Type: application/pdf" \
+    --data-binary @noidea.pdf
+
+3.
+  New bucket "medicines". PUT jpg image value "antibiotics" with
+  link to animal Ace.
+
+  curl -X PUT http://localhost:8091/riak/medicines/antibiotics/ \
+    -H "Content-type: image/jpeg" \
+    -H "Link: </riak/animals/ace>;riaktag=\"sick\"" \
+    --data-binary @pill.jpg
